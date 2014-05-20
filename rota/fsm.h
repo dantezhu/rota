@@ -26,14 +26,12 @@ namespace rota {
     class Fsm
     {
     public:
-        // 直接用静态变量保存就行了
-        static map<std::string, Fsm*> dict;
+        // 所有继承的fsm，必须注册到这里来
+        static std::map<int, Fsm*> dict;
 
     public:
-        std::string name() const=0;
-
         void enter(Actor* actor) {return;}
-        std::string process(Actor* actor, float dt) {return "";}
+        int process(Actor* actor, float dt) {return 0;}
         void exit(Actor* actor) {return;}
     };
 

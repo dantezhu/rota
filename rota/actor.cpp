@@ -1,9 +1,9 @@
 #include "actor.h"
 namespace rota {
 
-    std::string Actor::changeState(const std::string& dstState) {
-        if (dstState.empty()) {
-            return "";
+    int Actor::changeState(int dstState) {
+        if (dstState <= 0) {
+            return 0;
         }
 
         Fsm* dstFsm = Fsm::dict[dstState];
@@ -34,18 +34,18 @@ namespace rota {
         return processState(dstState);
     }
 
-    std::string processState(float dt) {
+    int processState(float dt) {
         Fsm* curFsm = Fsm::dict[curState];
 
         this.fsmDuration += dt;
 
         // 之所以不用直接 ChangeState:self.curState，是因为dt只有在第一次执行process时有意义
-        std::string dstState = curFsm->process(dt);
+        int dstState = curFsm->process(dt);
 
         return changeState(dstState);
     }
 
-    bool isInState(const std::string& state) {
+    bool isInState(int state) {
         return this.curState == state;
     }
 

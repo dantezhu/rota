@@ -23,13 +23,13 @@ namespace rota {
     class Actor
     {
     public:
-        std::string changeState(const std::string& dstState);
-        std::string processState(float dt);
+        int changeState(int dstState);
+        int processState(float dt);
 
-        bool isInState(const std::string& state);
+        bool isInState(int state);
 
     public:
-        std::string curState;
+        int curState;
         float fsmDuration;
     };
 
