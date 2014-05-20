@@ -1,4 +1,6 @@
+#include "fsm.h"
 #include "actor.h"
+
 namespace rota {
 
     int Actor::changeState(int dstState) {
@@ -12,42 +14,42 @@ namespace rota {
 
         if (isInState(dstState))
         {
-            dstState = curFsm->process(0);
+            dstState = curFsm->process(this, 0);
         }
         else
         {
             if (curFsm)
             {
-                curFsm.exit(this);
+                curFsm->exit(this);
             }
 
-            self.curState = dstState;
+            curState = dstState;
             
             if (dstFsm)
             {
-                self.fsmDuration = 0;
-                dstFsm.enter(this);
+                fsmDuration = 0;
+                dstFsm->enter(this);
             }
 
-            dstState = dstFsm->process(0);
+            dstState = dstFsm->process(this, 0);
         }
 
         return processState(dstState);
     }
 
-    int processState(float dt) {
+    int Actor::processState(float dt) {
         Fsm* curFsm = Fsm::dict[curState];
 
-        this.fsmDuration += dt;
+        fsmDuration += dt;
 
         // 之所以不用直接 ChangeState:self.curState，是因为dt只有在第一次执行process时有意义
-        int dstState = curFsm->process(dt);
+        int dstState = curFsm->process(this, dt);
 
         return changeState(dstState);
     }
 
-    bool isInState(int state) {
-        return this.curState == state;
+    bool Actor::isInState(int state) {
+        return curState == state;
     }
 
 }
