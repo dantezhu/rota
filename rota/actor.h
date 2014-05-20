@@ -23,6 +23,7 @@ namespace rota {
     class Actor
     {
     public:
+        Actor();
         int changeState(int dstState);
         int processState(float dt);
 

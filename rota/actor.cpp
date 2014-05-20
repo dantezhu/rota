@@ -2,6 +2,10 @@
 #include "actor.h"
 
 namespace rota {
+    Actor::Actor() {
+        curState = 0;
+        fsmDuration = 0;
+    }
 
     int Actor::changeState(int dstState) {
         if (dstState <= 0) {
@@ -9,8 +13,8 @@ namespace rota {
         }
 
         // 这样写确实可能会增加内容，但是一般情况下不会故意用错
-        Fsm* dstFsm = Fsm::dict[dstState];
-        Fsm* curFsm = Fsm::dict[curState];
+        Fsm* dstFsm = Fsm::dict()[dstState];
+        Fsm* curFsm = Fsm::dict()[curState];
 
         if (isInState(dstState))
         {
@@ -38,7 +42,10 @@ namespace rota {
     }
 
     int Actor::processState(float dt) {
-        Fsm* curFsm = Fsm::dict[curState];
+        Fsm* curFsm = Fsm::dict()[curState];
+        if (!curFsm) {
+            return 0;
+        }
 
         fsmDuration += dt;
 

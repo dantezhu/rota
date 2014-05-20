@@ -18,7 +18,7 @@ using namespace rota;
 
 #define FSM_IDLE  1
 #define FSM_RUN  2
-#define FSM_WALK  2
+#define FSM_WALK  3
 
 class Player: public Actor {
 public:
@@ -98,9 +98,10 @@ public:
 
 int main(int argc, char **argv)
 {
-    Fsm::dict[FSM_IDLE] = new FsmIdle();
-    Fsm::dict[FSM_RUN] = new FsmRun();
-    Fsm::dict[FSM_WALK] = new FsmWalk();
+    Fsm::dict()[FSM_IDLE] = new FsmIdle();
+    Fsm::dict()[FSM_RUN] = new FsmRun();
+    Fsm::dict()[FSM_WALK] = new FsmWalk();
+    // printf("len:%d\n", Fsm::dict().size());
 
     Player player;
     player.changeState(FSM_IDLE);

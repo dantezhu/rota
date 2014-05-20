@@ -27,12 +27,16 @@ namespace rota {
     {
     public:
         // 所有继承的fsm，必须注册到这里来
-        static std::map<int, Fsm*> dict;
+        static std::map<int, Fsm*>& dict() {
+            static std::map<int, Fsm*> _dict;
+
+            return _dict;
+        }
 
     public:
-        void enter(Actor* actor) {return;}
-        int process(Actor* actor, float dt) {return 0;}
-        void exit(Actor* actor) {return;}
+        virtual void enter(Actor* actor) {return;}
+        virtual int process(Actor* actor, float dt) {return 0;}
+        virtual void exit(Actor* actor) {return;}
     };
 
 }
