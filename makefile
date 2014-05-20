@@ -1,10 +1,8 @@
-trunk_path = $(shell pwd | sed "s/\/application.*//")
-
 C_FLAGS += -MMD -g -Wall -pthread
 
-TAR_DIR = ./
-SRC_DIR = ./
-OBJ_DIR = ./
+TAR_DIR = build/lib/
+SRC_DIR = rota/
+OBJ_DIR = build/obj/
 
 TARGET = $(TAR_DIR)librota.a
 
