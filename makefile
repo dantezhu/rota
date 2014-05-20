@@ -8,6 +8,7 @@ TARGET = $(TAR_DIR)librota.a
 
 OBJS = \
 	   $(OBJ_DIR)actor.o \
+	   $(OBJ_DIR)fsm.o \
 
 
 OBJ_SUB_DIRS = $(sort $(dir $(OBJS)))
