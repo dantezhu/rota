@@ -6,6 +6,7 @@ namespace rota {
             return 0;
         }
 
+        // 这样写确实可能会增加内容，但是一般情况下不会故意用错
         Fsm* dstFsm = Fsm::dict[dstState];
         Fsm* curFsm = Fsm::dict[curState];
 
