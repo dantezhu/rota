@@ -31,7 +31,7 @@ namespace rota {
 
     public:
         virtual void enter(Actor* actor);
-        virtual int process(Actor* actor, float dt);
+        virtual int execute(Actor* actor, float dt);
         virtual void exit(Actor* actor);
     };
 

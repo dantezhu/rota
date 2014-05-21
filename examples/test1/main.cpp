@@ -45,7 +45,7 @@ public:
     void enter(Actor* actor) {
         printf("FsmIdle, %s\n", __func__);
     }
-    int process(Actor* actor, float dt) {
+    int execute(Actor* actor, float dt) {
         printf("FsmIdle, %s\n", __func__);
         ((Player*)actor)->idle();
         return FSM_RUN;
@@ -65,7 +65,7 @@ public:
     void enter(Actor* actor) {
         printf("FsmRun, %s\n", __func__);
     }
-    int process(Actor* actor, float dt) {
+    int execute(Actor* actor, float dt) {
         printf("FsmRun, %s\n", __func__);
         ((Player*)actor)->run();
         return FSM_WALK;
@@ -85,7 +85,7 @@ public:
     void enter(Actor* actor) {
         printf("FsmWalk, %s\n", __func__);
     }
-    int process(Actor* actor, float dt) {
+    int execute(Actor* actor, float dt) {
         printf("FsmWalk, %s\n", __func__);
         ((Player*)actor)->walk();
         return FSM_IDLE;

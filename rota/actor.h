@@ -25,7 +25,7 @@ namespace rota {
     public:
         Actor();
         int changeState(int dstState);
-        int processState(float dt);
+        int updateState(float dt);
 
         bool isInState(int state);
 
