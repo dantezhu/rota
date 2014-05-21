@@ -4,7 +4,7 @@
 namespace rota {
     Actor::Actor() {
         curState = 0;
-        fsmDuration = 0;
+        stateAge = 0;
     }
 
     int Actor::changeState(int dstState) {
@@ -16,7 +16,7 @@ namespace rota {
         Fsm* dstFsm = Fsm::dict()[dstState];
         Fsm* curFsm = Fsm::dict()[curState];
 
-        if (isInState(dstState))
+        if (curState == dstState)
         {
             dstState = curFsm->execute(this, 0);
         }
@@ -31,7 +31,7 @@ namespace rota {
             
             if (dstFsm)
             {
-                fsmDuration = 0;
+                stateAge = 0;
                 dstFsm->enter(this);
             }
 
@@ -47,7 +47,7 @@ namespace rota {
             return 0;
         }
 
-        fsmDuration += dt;
+        stateAge += dt;
 
         // 之所以不用直接 changeState:self.curState，是因为dt只有在第一次执行process时有意义
         int dstState = curFsm->execute(this, dt);
@@ -55,8 +55,12 @@ namespace rota {
         return changeState(dstState);
     }
 
-    bool Actor::isInState(int state) {
-        return curState == state;
+    int Actor::getState() {
+        return curState;
+    }
+
+    float Actor::getStateAge() {
+        return stateAge;
     }
 
 }

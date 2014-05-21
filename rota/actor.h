@@ -27,11 +27,12 @@ namespace rota {
         int changeState(int dstState);
         int updateState(float dt);
 
-        bool isInState(int state);
+        int getState();
+        float getStateAge();
 
-    public:
+    private:
         int curState;
-        float fsmDuration;
+        float stateAge;
     };
 
 }
