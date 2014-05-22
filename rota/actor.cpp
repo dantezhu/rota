@@ -13,8 +13,8 @@ namespace rota {
         }
 
         // 这样写确实可能会增加内容，但是一般情况下不会故意用错
-        Fsm* dstFsm = Fsm::dict()[dstState];
-        Fsm* curFsm = Fsm::dict()[curState];
+        Fsm* dstFsm = Fsm::getFsm(dstState);
+        Fsm* curFsm = Fsm::getFsm(curState);
 
         if (curState == dstState)
         {
@@ -42,7 +42,7 @@ namespace rota {
     }
 
     int Actor::updateState(float dt) {
-        Fsm* curFsm = Fsm::dict()[curState];
+        Fsm* curFsm = Fsm::getFsm(curState);
         if (!curFsm) {
             return 0;
         }

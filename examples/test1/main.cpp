@@ -98,9 +98,9 @@ public:
 
 int main(int argc, char **argv)
 {
-    Fsm::dict()[FSM_IDLE] = new FsmIdle();
-    Fsm::dict()[FSM_RUN] = new FsmRun();
-    Fsm::dict()[FSM_WALK] = new FsmWalk();
+    Fsm::addFsm(FSM_IDLE, new FsmIdle());
+    Fsm::addFsm(FSM_RUN, new FsmRun());
+    Fsm::addFsm(FSM_WALK, new FsmWalk());
     // printf("len:%d\n", Fsm::dict().size());
 
     Player player;
