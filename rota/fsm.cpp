@@ -11,7 +11,7 @@ namespace rota {
     }
 
     Fsm* Fsm::getFsm(int state) {
-        typeof(mapFsms.begin()) it = mapFsms.find(state);
+        std::map<int, Fsm*>::iterator it = mapFsms.find(state);
         if (it == mapFsms.end())
         {
             return NULL;
