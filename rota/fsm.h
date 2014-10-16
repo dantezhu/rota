@@ -1,7 +1,7 @@
 /*=============================================================================
 #
 #     FileName: fsm.h
-#         Desc: 
+#         Desc: state > 0 为有效值
 #
 #       Author: dantezhu
 #        Email: zny2008@gmail.com
